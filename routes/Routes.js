@@ -5,14 +5,14 @@ const repo = require('../repos/LibraryRepo');
 
 // TODO: Memanggil fungsi listBuku untuk mendapatkan data semua buku yang ada
 app.get('/', (req, res) => {
-  repository.findAll().then((todos) => {
+  repo.findAll().then((todos) => {
     res.json(todos);
   }).catch((error) => console.log(error));
 });
 
 // TODO: Memanggil fungsi cariBuku untuk mendapatkan spesifik buku berdasarkan ID
 app.get('/:id', (req, res) => {
-  repository.findAll().then((todos) => {
+  repo.findAll().then((todos) => {
     res.json(todos);
   }).catch((error) => console.log(error));
 });
@@ -21,7 +21,7 @@ app.get('/:id', (req, res) => {
 app.post('/', (req, res) => {
   const infoBukuBaru = req.body;
   console.log(infoBukuBaru)
-  repository.create(infoBukuBaru).then((todo) => {
+  repo.create(infoBukuBaru).then((todo) => {
     res.json(todo);
   }).catch((error) => console.log(error));
 });
@@ -29,7 +29,7 @@ app.post('/', (req, res) => {
 // TODO: Memanggil fungsi hapusBuku untuk menghapus buku tertentu
 app.delete('/:id', (req, res) => {
   const { id } = req.params;
-  repository.deleteById(id).then((ok) => {
+  repo.deleteById(id).then((ok) => {
     console.log(ok);
     console.log(`Deleted record with id: ${id}`);
     res.status(200).json([]);
@@ -40,7 +40,7 @@ app.delete('/:id', (req, res) => {
 app.put('/:id', (req, res) => {
   const { id } = req.params;
   const todo = { judulBuku: req.body.judulBuku, status: req.body.status };
-  repository.updateById(id, todo)
+  repo.updateById(id, todo)
     .then(res.status(200).json([]))
     .catch((error) => console.log(error));
   });
