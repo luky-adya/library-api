@@ -9,27 +9,30 @@ class LibraryRepo {
   // TODO: Buat fungsi dengan nama `tambahBuku` untuk menambah buku baru pada perpustakaan
   // Parameter infoBuku merupakan sebuah objek buku dengan key judulBuku, pengarangBuku, genreBuku, dan isDipinjam
   async tambahBuku(infoBuku) {
-    // tambahkan disini
+    const newTodo = { infoBuku, isDipinjam: false };
+    const todo = new this.model(newTodo);
+    return todo.save();
   }
 
   // TODO: Buat fungsi dengan nama `listBuku` untuk mendapatkan semua data buku yg tersedia
   async listBuku() {
-    // tambahkan disini
+        return this.model.findAll();
   }
 
   // TODO: Buat fungsi dengan nama `cariBuku` untuk mencari buku berdasarkan ID buku
   async cariBuku(id) {
-    // tambahkan disini
+        return this.model.findByIdAndDelete(id);
   }
 
   // TODO: Buat fungsi `hapusBuku` untuk dapat menghapus buku dengan ID
   async hapusBuku(id) {
-    // tambahkan disini
+        return this.model.findByIdAndDelete(id);
   }
 
   // TODO: Buat fungsi dengan nama `rubahInfoBuku` untuk merubah informasi buku dengan ID
   async rubahInfoBuku(id, infoBukuBaru) {
-    // tambahkan disini
+        const query = {_id: id };
+    return this.model.findOneAndUpdate(query, {$set: {status: object.status} })
   }
 
   // Fungsi dengan nama `rubahStatusPeminjaman` untuk merubah informasi buku dengan ID
